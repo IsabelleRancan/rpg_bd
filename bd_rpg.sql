@@ -13,73 +13,74 @@ DROP TABLE IF EXISTS Poderes_Classes;
 
 CREATE TABLE Hab_Raca
 (
-	nomeRacaPertence varchar(60) not null,
-	nomeHabRaca varchar(60) not null primary key,
-	descricaoHabRaca varchar(600) not null
+    nomeRacaPertence varchar(60) not null,
+    nomeHabRaca varchar(60) not null primary key,
+    descricaoHabRaca varchar(600) not null
 );
 
 CREATE TABLE Racas
 (
-	nomeRaca varchar(40) not null primary key,
-	modAtributo varchar(100) not null,
-	nomeHabRaca varchar(60) not null  references Hab_Raca (nomeHabRaca)
+    nomeRaca varchar(40) not null primary key,
+    modAtributo varchar(100) not null,
+    nomeHabRaca varchar(60) not null references Hab_Raca (nomeHabRaca)
 );
 
 CREATE TABLE Origens
 (
-	nomeOrigem varchar(40) not null primary key,
-	itens varchar(200) not null,
-	beneficios varchar(200) not null,
-	nomeHabOrigem varchar (60) not null,
-	descricaoHabOrigem varchar (600) not null
+    nomeOrigem varchar(40) not null primary key,
+    itens varchar(200) not null,
+    beneficios varchar(200) not null,
+    nomeHabOrigem varchar(60) not null,
+    descricaoHabOrigem varchar(600) not null
 );
 
 CREATE TABLE Hab_Classes
 (
-	nomeHabClasse varchar(40) not null primary key,
-	nomeClassePertence varchar(60) not null,
-	preRequisito varchar(100),
-	descricaoHabClasse varchar (1200) not null
+    nomeHabClasse varchar(40) not null primary key,
+    nomeClassePertence varchar(60) not null,
+    preRequisito varchar(100),
+    descricaoHabClasse varchar (1200) not null
 );
 
 CREATE TABLE Poderes_Classes
 (
-	nomePoderClasse varchar(40) not null primary key,
-	nomeClassePertence varchar(60) not null,
-	preRequisito varchar(100),
-	descricaoPoderClasse varchar (1000) not null
+    nomePoderClasse varchar(40) not null primary key,
+    nomeClassePertence varchar(60) not null,
+    preRequisito varchar(100),
+    descricaoPoderClasse varchar (1000) not null
 );
 
 CREATE TABLE Classes
 (
-	nomeClasse varchar(40) not null primary key,
-	pontosVida varchar(120) not null,
-	pontosMana varchar(20) not null,
-	pericias varchar(450) not null,
-	proeficiencias varchar(45) not null,
-	nomeHabClasse varchar(60) not null references Hab_classes(nomeHabClasse),
-	nomePoderClasse varchar(60) not null references Poderes_classes(nomePoderClasse)
+    nomeClasse varchar(40) not null primary key,
+    pontosVida varchar(120) not null,
+    pontosMana varchar(20) not null,
+    pericias varchar(450) not null,
+    proeficiencias varchar(45) not null,
+    nomeHabClasse varchar(60) not null references Hab_Classes(nomeHabClasse),
+    nomePoderClasse varchar(60) not null references Poderes_Classes(nomePoderClasse)
 );
 
 CREATE TABLE Personagem
 (
-	nomePersonagem varchar(40) not null primary key,
-	nivelPersonagem  varchar(2) not null,
-	atrFor int not null,
-	atrDes int not null,
-	atrCons int not null,
-	atrInt int not null,
-	atrSab int not null,
-	atrCar int not null,
-	nomeRaca varchar(40) not null references Racas (nomeRaca),
-	nomeOrigem varchar(40) not null references Origens (nomeOrigem)
+    nomePersonagem varchar(40) not null primary key,
+    nivelPersonagem varchar(2) not null,
+    atrFor int not null,
+    atrDes int not null,
+    atrCons int not null,
+    atrInt int not null,
+    atrSab int not null,
+    atrCar int not null,
+    nomeRaca varchar(40) not null references Racas (nomeRaca),
+    nomeOrigem varchar(40) not null references Origens (nomeOrigem)
 );
 
 CREATE TABLE Multiclasse 
 (
-	nomePersonagem varchar(40) not null references Personagem (nomePersonagem),
-	nomeClasse varchar(40) not null references Classes (nomeClasse)
+    nomePersonagem varchar(40) not null references Personagem (nomePersonagem),
+    nomeClasse varchar(40) not null references Classes (nomeClasse)
 );
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO Hab_Raca (nomeRacaPertence, nomeHabRaca, descricaoHabRaca)
